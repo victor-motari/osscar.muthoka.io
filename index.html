@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet Map with Custom Popups</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+        .custom-popup {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([-1.3667, 38.0167], 10); // Coordinates of Kitui
+        // Add a tile layer (OpenStreetMap tiles)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Marker coordinates
+        var marker1 = L.marker([-1.3667, 38.0167]).addTo(map);
+        var marker2 = L.marker([-1.3600, 38.3000]).addTo(map);
+
+        // Custom popup content
+        var popupContent1 = '<div class="custom-popup">' +
+                                '<h3>KITUI COUNTY</h3>' +
+                                '<p>KITUI is the main City of Kitui County. It is famous for its unique traditional crafts, including pottery and basket weaving.</p>' +
+                                '<a href="https://example.com">More info</a>' +
+                            '</div>';
+
+        var popupContent2 = '<div class="custom-popup">' +
+                                '<h3>KITUI COUNTY</h3>' +
+                                '<p>  Area: 30,430 km² Population: 1.136 million (2019) Formed: 27 August 2010 </p>' +
+                                '<a href="https://example.com">More info</a>' +
+                            '</div>';
+
+        // Bind popups to markers
+        marker1.bindPopup(popupContent1);
+        marker2.bindPopup(popupContent2);
+    </script>
+</body>
+</html>
